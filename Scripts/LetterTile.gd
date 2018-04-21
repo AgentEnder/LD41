@@ -1,13 +1,17 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var player
+var letter = 'a'
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	pass
 
-func init(letter):
+
+func init(_letter):
+	letter = _letter
 	$CenterContainer/Label.text = letter
+
+func _on_LetterTile_body_entered(body):
+	if body.is_in_group("Player"):
+		body.getLetter(letter)
+		queue_free()

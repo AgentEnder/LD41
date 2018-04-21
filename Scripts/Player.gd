@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 const BASEDMG = 20
-const SCOREPATH = "CanvasLayer/Container/VBoxContainer/CenterContainer/Label"
+const SCOREPATH = "CanvasLayer/Container/VSplitContainer/CenterContainer/Label"
+const INVENTORYPATH = "CanvasLayer/Container/VSplitContainer/Container/Label"
 
 var root
 
@@ -14,7 +15,7 @@ var currentCameraIdx = 0
 var health = 100
 var maxHealth = 100
 var score = -15
-var inventory = []
+var inventory = "chek"
 var damage = BASEDMG
 var dead = false
 
@@ -23,6 +24,7 @@ func _ready():
 	$HealthBar.max_value = maxHealth
 	damage = BASEDMG
 	root = get_parent()
+	print(checkWord("check"))
 	pass
 
 func _physics_process(delta):
@@ -78,3 +80,29 @@ func takeDamage(x):
 func die():
 	root.display_gui("GameOver")
 	dead = true
+	
+func getLetter(letter):
+	inventory += letter
+	root.get_node(INVENTORYPATH).text = inventory
+	
+func checkWord(word):
+	var letters = {}
+	for c in word:
+		if c in letters.keys():
+			letters[c] += 1
+		else:
+			letters[c] = 1
+	var invLetters = {}
+	for c in inventory:
+		if c in invLetters.keys():
+			invLetters[c] += 1
+		else:
+			invLetters[c] = 1
+	var hasWord = true
+	for key in letters.keys():
+		if key in invLetters.keys():
+			if letters[key] > invLetters[key]:
+				hasWord = false
+		else:
+			hasWord = false
+	return hasWord
