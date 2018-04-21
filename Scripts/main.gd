@@ -10,7 +10,7 @@ var guis = {"GameOver" : preload("res://GUIs/GameOver.tscn"),
 			"Descent":preload("res://GUIs/Descent.tscn"),
 			"Craft" : preload("res://GUIs/Crafting.tscn")}
 
-var words = ["sword", "shield", "health"]
+var words = ["sword", "shield", "health", "health"]
 
 func _ready():
 	randomize()

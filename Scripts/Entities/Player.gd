@@ -15,7 +15,7 @@ var currentCameraIdx = 0
 var health = 100
 var maxHealth = 100
 var score = -15
-var inventory = "chek"
+var inventory = ""
 var damage = BASEDMG
 var dead = false
 
@@ -24,7 +24,7 @@ func _ready():
 	$HealthBar.max_value = maxHealth
 	damage = BASEDMG
 	root = get_parent()
-	print(checkWord("check"))
+	root.display_gui("Craft")
 	pass
 
 func _physics_process(delta):
@@ -106,3 +106,10 @@ func checkWord(word):
 		else:
 			hasWord = false
 	return hasWord
+	
+func useLettersFromInventory(string):
+	print(inventory)
+	for c in string:
+		var parts = inventory.split(c, false, 1)
+		inventory = parts.join("")
+	print(inventory)

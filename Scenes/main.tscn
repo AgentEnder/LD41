@@ -110,6 +110,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Material", "Mouse", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Container" index="0"]
 
@@ -126,6 +129,9 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 _sections_unfolded = [ "Mouse" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Container/VSplitContainer" index="0"]
 
@@ -179,6 +185,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Mouse" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label" type="Label" parent="CanvasLayer/Container/VSplitContainer/Container" index="0"]
 
