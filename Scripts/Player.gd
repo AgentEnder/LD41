@@ -3,7 +3,7 @@ extends KinematicBody2D
 const BASEDMG = 20
 const SCOREPATH = "CanvasLayer/Container/VBoxContainer/CenterContainer/Label"
 
-var GameOver = preload("res://Scenes/GameOver.tscn")
+var root
 
 var motion = Vector2()
 var moveSpeed = 400
@@ -22,10 +22,11 @@ func _ready():
 	cameras = [get_parent().get_node("Camera"),get_parent().get_node("Camera2D")]
 	$HealthBar.max_value = maxHealth
 	damage = BASEDMG
+	root = get_parent()
 	pass
 
 func _physics_process(delta):
-	if not dead:
+	if not dead and not root.paused:
 		#Toggle Cameras
 		if(Input.is_action_just_pressed("ui_view_map")):
 			cameras[currentCameraIdx].current = false
@@ -75,5 +76,5 @@ func takeDamage(x):
 	$HealthBar.value = health
 	
 func die():
-	get_tree().get_nodes_in_group("GUI")[0].add_child(GameOver.instance())
+	root.display_gui("GameOver")
 	dead = true

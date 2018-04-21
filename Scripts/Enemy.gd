@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var player
 var room
+var root
 var speed = 200
 var movement = Vector2()
 var enabled = false
@@ -14,13 +15,14 @@ var scoreBonus = 30
 
 func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
+	root = get_tree().get_nodes_in_group("Root")[0]
 	room = get_parent()
 	pause_mode = PAUSE_MODE_STOP
 	$HealthBar.max_value = maxHealth
 	pass
 
 func _physics_process(delta):
-	if enabled:
+	if enabled and not root.paused:
 		var target_pos = player.position - room.position
 		movement = target_pos - position
 		movement = normalize(movement)*speed

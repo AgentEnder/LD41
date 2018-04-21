@@ -1,10 +1,12 @@
 extends Node2D
 
+var paused = false
 var Room = preload("res://Scenes/Room.tscn")
 var Map = []
 export var Width = 5
 export var Height = 5
 var LevelDimens = Vector2()
+var guis = {"GameOver" : preload("res://GUIs/GameOver.tscn"), "Descent":preload("res://GUIs/Descent.tscn")}
 
 func _ready():
 	randomize()
@@ -95,3 +97,6 @@ func AddRoom(x, y):
 	else:
 		raise(ValueError())
 	pass
+
+func display_gui(gui):
+	$CanvasLayer.add_child(guis[gui].instance())

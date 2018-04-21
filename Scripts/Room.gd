@@ -13,7 +13,7 @@ var mapPos = Vector2()
 var enemy_scn = preload("res://MiniScenes/Enemy.tscn")
 
 var pickups = []
-
+var stairs_scn = preload("res://MiniScenes/Stairs.tscn")
 
 func _ready():
 	var dir = Directory.new()
@@ -77,6 +77,10 @@ func buildWalls():
 				add_child(wall_instance)
 
 func spawnItems():
+	if doors[0]+doors[1]+doors[2]+doors[3] == 1:
+		var stair = stairs_scn.instance()
+		stair.position = $Center.position
+		add_child(stair)
 	for spawnPoint in $SpawnPoints.get_children():
 		var roll = randf()
 		if roll > 0.75:
