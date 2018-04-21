@@ -80,7 +80,11 @@ func AddRoom(x, y):
 				doors[3] = 1
 			else:
 				doors[3] = 0
-			
+			###ENSURE ROOM 1 HAS DOORS
+			if Vector2(x,y) == Vector2():
+				if doors[1] + doors[2] == 0:
+					var door = randi()%2 + 1
+					doors[door] = 1
 			#make room
 			var newRoom = Room.instance()
 			newRoom.init(Vector2(x,y), doors)

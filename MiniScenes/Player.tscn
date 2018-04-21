@@ -51,15 +51,17 @@ _sections_unfolded = [ "Border", "Border Width", "Content Margin", "Corner Radiu
 custom_solver_bias = 0.0
 extents = Vector2( 96, 96 )
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "Player",
 ]]
 
+z_index = 1
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="AttackSprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -99,7 +101,7 @@ value = 100.0
 exp_edit = false
 rounded = false
 percent_visible = false
-_sections_unfolded = [ "Anchor", "Percent", "Theme", "custom_styles" ]
+_sections_unfolded = [ "Anchor", "Percent", "Theme", "Visibility", "custom_styles" ]
 
 [node name="HitArea" type="Area2D" parent="." index="4"]
 

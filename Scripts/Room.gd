@@ -32,7 +32,8 @@ func init(arg_mapPos, arg_doors):
 	doors = arg_doors
 	mapPos = arg_mapPos
 	buildWalls()
-	spawnItems()
+	if not mapPos == Vector2():
+		spawnItems()
 
 func buildWalls():
 	for i in range(len(doors)):
