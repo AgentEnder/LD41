@@ -8,6 +8,8 @@ export var Height = 5
 var LevelDimens = Vector2()
 var guis = {"GameOver" : preload("res://GUIs/GameOver.tscn"), "Descent":preload("res://GUIs/Descent.tscn")}
 
+var words = ["sword", "shield"]
+
 func _ready():
 	randomize()
 	LevelDimens = Vector2(Width,Height)

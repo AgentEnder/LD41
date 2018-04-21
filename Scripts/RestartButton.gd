@@ -7,5 +7,4 @@ var menuRootPath = "../../../.."
 
 
 func _on_RestartButton_pressed():
-	print("PRESSED")
 	get_tree().reload_current_scene()

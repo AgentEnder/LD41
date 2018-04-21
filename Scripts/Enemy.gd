@@ -13,6 +13,8 @@ var maxHealth = 50
 
 var scoreBonus = 30
 
+var letterTiles = preload("res://MiniScenes/LetterTile.tscn")
+
 func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	root = get_tree().get_nodes_in_group("Root")[0]
@@ -41,6 +43,12 @@ func takeDamage(x):
 
 func die():
 	player.addScore(scoreBonus)
+	var tile = letterTiles.instance()
+	var word = root.words[randi()%len(root.words)]
+	var chars = []
+	tile.init(word[randi()%len(word)])
+	tile.position = position
+	room.add_child(tile)
 	queue_free()
 
 func normalize(vector):
