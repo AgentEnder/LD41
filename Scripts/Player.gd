@@ -1,0 +1,61 @@
+extends KinematicBody2D
+
+var motion = Vector2()
+var moveSpeed = 400
+
+var cameras = [0,0]
+var currentCameraIdx = 0
+
+var health = 100
+var maxHealth = 100
+var score = 0
+var inventory = []
+
+const SCOREPATH = "CanvasLayer/Container/VBoxContainer/CenterContainer/Label"
+
+func _ready():
+	cameras = [get_parent().get_node("Camera"),get_parent().get_node("Camera2D")]
+	$HealthBar.max_value = maxHealth
+	pass
+
+func _physics_process(delta):
+	#Toggle Cameras
+	if(Input.is_action_just_pressed("ui_accept")):
+		cameras[currentCameraIdx].current = false
+		currentCameraIdx = (currentCameraIdx+1)%2
+		cameras[currentCameraIdx].current = true
+	#Reset (With All Children Nodes Cleared)
+	elif(Input.is_action_just_pressed("ui_cancel")):
+		for child in get_parent().get_children():
+			child.queue_free()
+		get_tree().reload_current_scene()
+	#Movement Input
+	if(Input.is_action_pressed("ui_up")):
+		motion.y = -1
+	elif(Input.is_action_pressed("ui_down")):
+		motion.y = 1
+	else:
+		motion.y = 0
+		
+	if(Input.is_action_pressed("ui_left")):
+		motion.x = -1
+	elif(Input.is_action_pressed("ui_right")):
+		motion.x = 1
+	else:
+		motion.x = 0
+	#Normalize Movement
+	if not motion.is_normalized():
+		motion = motion.normalized()
+	
+	motion*=moveSpeed
+	#Movement
+	move_and_slide(motion)
+
+func addScore(x):
+	score += x
+	var string = "Score: " + str(score)
+	get_parent().get_node(SCOREPATH).text = string
+	
+func takeDamage(x): 
+	health -= x
+	$HealthBar.value = health
