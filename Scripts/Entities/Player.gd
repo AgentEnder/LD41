@@ -24,7 +24,7 @@ func _ready():
 	$HealthBar.max_value = maxHealth
 	damage = BASEDMG
 	root = get_parent()
-	root.display_gui("Craft")
+	
 	pass
 
 func _physics_process(delta):
@@ -39,6 +39,9 @@ func _physics_process(delta):
 			for child in get_parent().get_children():
 				child.queue_free()
 			get_tree().reload_current_scene()
+		elif(Input.is_action_just_pressed("ui_craft")):
+			root.paused = true
+			root.display_gui("Craft")
 		#Movement Input
 		if(Input.is_action_pressed("ui_up")):
 			motion.y = -1
@@ -83,8 +86,11 @@ func die():
 	
 func getLetter(letter):
 	inventory += letter
+	updateInventory()
+
+func updateInventory():
 	root.get_node(INVENTORYPATH).text = inventory
-	
+
 func checkWord(word):
 	var letters = {}
 	for c in word:
@@ -109,7 +115,10 @@ func checkWord(word):
 	
 func useLettersFromInventory(string):
 	print(inventory)
+	if string == "health":
+		health = maxHealth
+		$HealthBar.value = health
 	for c in string:
 		var parts = inventory.split(c, false, 1)
 		inventory = parts.join("")
-	print(inventory)
+	updateInventory()
