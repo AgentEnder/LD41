@@ -1,9 +1,5 @@
 extends KinematicBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 var player
 var room
 var speed = 200
@@ -14,7 +10,7 @@ var contactDamage = 5
 var health = 50
 var maxHealth = 50
 
-
+var scoreBonus = 30
 
 func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
@@ -31,13 +27,19 @@ func _physics_process(delta):
 		movement = move_and_slide(movement)
 		
 		for node in $HitArea.get_overlapping_bodies():
-			if node.is_in_group("Player"):
+			if node == player:
 				node.takeDamage(contactDamage)
 	pass
 
 func takeDamage(x):
 	health-=x
+	if health <= 0:
+		die()
 	$HealthBar.value = health
+
+func die():
+	player.addScore(scoreBonus)
+	queue_free()
 
 func normalize(vector):
 	vector /= vector.length()

@@ -10,17 +10,20 @@ var health = 100
 var maxHealth = 100
 var score = 0
 var inventory = []
+var damage
 
+const BASEDMG = 20
 const SCOREPATH = "CanvasLayer/Container/VBoxContainer/CenterContainer/Label"
 
 func _ready():
 	cameras = [get_parent().get_node("Camera"),get_parent().get_node("Camera2D")]
 	$HealthBar.max_value = maxHealth
+	damage = BASEDMG
 	pass
 
 func _physics_process(delta):
 	#Toggle Cameras
-	if(Input.is_action_just_pressed("ui_accept")):
+	if(Input.is_action_just_pressed("ui_view_map")):
 		cameras[currentCameraIdx].current = false
 		currentCameraIdx = (currentCameraIdx+1)%2
 		cameras[currentCameraIdx].current = true
@@ -46,6 +49,11 @@ func _physics_process(delta):
 	#Normalize Movement
 	if not motion.is_normalized():
 		motion = motion.normalized()
+	
+	if Input.is_action_just_pressed("player_attack"):
+		for body in $HitArea.get_overlapping_bodies():
+			if body.is_in_group("Enemy"):
+				body.takeDamage(damage)
 	
 	motion*=moveSpeed
 	#Movement

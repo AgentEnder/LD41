@@ -49,9 +49,9 @@ _sections_unfolded = [ "Border", "Border Width", "Content Margin", "Corner Radiu
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 64, 64 )
+extents = Vector2( 96, 96 )
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
 
@@ -85,6 +85,7 @@ margin_top = -54.0
 margin_right = 33.0
 margin_bottom = -38.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
