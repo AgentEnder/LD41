@@ -1,8 +1,7 @@
 extends Node2D
 
 var doors = [0,0,0,0] #Bitmask for doors, URDL (Clockwise)
-var wall = preload("res://MiniScenes/Walls/Wall.tscn")
-var wallScale = Vector2(16,9.5)
+var wall_scns = [preload("res://MiniScenes/Walls/HWall.tscn"),preload("res://MiniScenes/Walls/VWall.tscn")]
 var wallPositions = Vector2(512,308)
 
 var door_scns = [preload("res://MiniScenes/Walls/HorizDoor.tscn"), preload("res://MiniScenes/Walls/VertDoor.tscn")]
@@ -38,14 +37,12 @@ func init(arg_mapPos, arg_doors):
 func buildWalls():
 	for i in range(len(doors)):
 		if i == 0:
+			var instance
 			if(doors[i] == 1):
-				var door_instance = door_scns[0].instance()
-				add_child(door_instance)
+				instance = door_scns[0].instance()
 			elif(doors[i] == 0):
-				var wall_instance = wall.instance()
-				wall_instance.scale = Vector2(wallScale.x, 1)
-				wall_instance.position = Vector2(bounds[2]/2, bounds[1]+32)
-				add_child(wall_instance)
+				instance = wall_scns[0].instance()
+			add_child(instance)
 		elif i == 1:
 			if(doors[i] == 1):
 				var door_instance = door_scns[1].instance()

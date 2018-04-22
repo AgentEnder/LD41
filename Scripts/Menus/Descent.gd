@@ -15,3 +15,7 @@ func _on_DescendButton_pressed():
 func _on_CancelButton_pressed():
 	root.paused = false
 	queue_free()
+
+func _input(event):
+	if event.is_action_pressed("ui_accept") and not event.is_echo():
+		_on_DescendButton_pressed()

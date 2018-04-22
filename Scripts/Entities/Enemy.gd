@@ -10,6 +10,7 @@ var enabled = false
 var contactDamage = 5
 var health = 50
 var maxHealth = 50
+var letters = []
 
 var scoreBonus = 30
 
@@ -19,6 +20,10 @@ func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	root = get_tree().get_nodes_in_group("Root")[0]
 	room = get_parent()
+	for word in root.words:
+		for c in word:
+			if not c in letters:
+				letters.append(c)
 	pause_mode = PAUSE_MODE_STOP
 	$HealthBar.max_value = maxHealth
 	pass
@@ -44,9 +49,7 @@ func takeDamage(x):
 func die():
 	player.addScore(scoreBonus)
 	var tile = letterTiles.instance()
-	var word = root.words[randi()%len(root.words)]
-	var chars = []
-	tile.init(word[randi()%len(word)])
+	tile.init(letters[randi()%letters.size()])
 	tile.position = position
 	room.add_child(tile)
 	queue_free()
