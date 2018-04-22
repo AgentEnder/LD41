@@ -44,34 +44,28 @@ func buildWalls():
 				instance = wall_scns[0].instance()
 			add_child(instance)
 		elif i == 1:
+			var instance
 			if(doors[i] == 1):
-				var door_instance = door_scns[1].instance()
-				door_instance.position = Vector2(bounds[2]-64, 0)
-				add_child(door_instance)
+				instance = door_scns[1].instance()
 			elif(doors[i] == 0):
-				var wall_instance = wall.instance()
-				wall_instance.scale = Vector2(1, wallScale.y)
-				wall_instance.position = Vector2(bounds[2]-32, bounds[3]/2)
-				add_child(wall_instance)
+				instance = wall_scns[1].instance()
+			instance.position = Vector2(bounds[2]-64, 0)
+			add_child(instance)
 		elif i == 2:
+			var instance
 			if(doors[i] == 1):
-				var door_instance = door_scns[0].instance()
-				door_instance.position = Vector2(bounds[0],bounds[3]-64) 
-				add_child(door_instance)
+				instance = door_scns[0].instance()
 			elif(doors[i] == 0):
-				var wall_instance = wall.instance()
-				wall_instance.scale = Vector2(wallScale.x, 1)
-				wall_instance.position = Vector2(bounds[2]/2, bounds[3]-32)
-				add_child(wall_instance)
+				instance = wall_scns[0].instance()
+			instance.position = Vector2(bounds[0],bounds[3]-64) 
+			add_child(instance)
 		elif i == 3:
+			var instance
 			if(doors[i] == 1):
-				var door_instance = door_scns[1].instance()
-				add_child(door_instance)
+				instance = door_scns[1].instance()
 			elif(doors[i] == 0):
-				var wall_instance = wall.instance()
-				wall_instance.scale = Vector2(1, wallScale.y)
-				wall_instance.position = Vector2(bounds[0]+32, bounds[3]/2)
-				add_child(wall_instance)
+				instance = wall_scns[1].instance()
+			add_child(instance)
 
 func spawnItems():
 	if doors[0]+doors[1]+doors[2]+doors[3] == 1:

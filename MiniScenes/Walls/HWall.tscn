@@ -3,7 +3,9 @@
 [ext_resource path="res://MiniScenes/Walls/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Wall.png" type="Texture" id=2]
 
-[node name="HWall" type="Node2D" index="0"]
+[node name="HWall" type="Node2D"]
+
+_sections_unfolded = [ "Transform" ]
 
 [node name="Wall5" parent="." index="0" instance=ExtResource( 1 )]
 
