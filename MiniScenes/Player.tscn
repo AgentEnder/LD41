@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Anim/Player/fwalk0.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Anim/Player/fwalk1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Anim/Player/fwalk2.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Anim/Player/bwalk0.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Anim/Player/bwalk2.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Anim/Player/bwalk1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Anim/Player/bwalk0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Anim/Player/bwalk2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Anim/Player/bwalk1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Anim/Player/fwalk0.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Anim/Player/fwalk1.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Anim/Player/fwalk2.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/Player/Hit1.wav" type="AudioStream" id=8]
 [ext_resource path="res://Sprites/Sword.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Shield.png" type="Texture" id=10]
@@ -16,12 +16,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "fwalk",
+"name": "bwalk",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "bwalk",
+"name": "fwalk",
 "speed": 10.0
 } ]
 
@@ -99,7 +99,6 @@ _sections_unfolded = [ "Z Index" ]
 
 frames = SubResource( 1 )
 animation = "fwalk"
-frame = 2
 playing = true
 offset = Vector2( 0, -10 )
 
