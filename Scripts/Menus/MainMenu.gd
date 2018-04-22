@@ -4,6 +4,9 @@ extends Control
 # var a = 2
 # var b = "textvar"
 
+func _ready():
+	pass
+
 
 func _on_Quit_pressed():
 	get_tree().quit()

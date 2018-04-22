@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="LD41"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://GUIs/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+BGMusic="*res://MiniScenes/BGMusic.tscn"
 
 [input]
 
