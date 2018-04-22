@@ -7,7 +7,7 @@ var speed = 200
 var movement = Vector2()
 var enabled = false
 
-var contactDamage = 5
+var contactDamage = 15
 var health = 50
 var maxHealth = 50
 var letters = []
@@ -16,12 +16,14 @@ var scoreBonus = 30
 
 var letterTiles = preload("res://MiniScenes/LetterTile.tscn")
 
-var HitSamples = [preload("res://Sounds/Enemy/Hit1.wav"), preload("res://Sounds/Enemy/Hit2.wav")]
+var HitSamples = []
 
 func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	root = get_tree().get_nodes_in_group("Root")[0]
 	room = get_parent()
+	HitSamples =[load("res://Sounds/Enemy/Hit1.wav"), load("res://Sounds/Enemy/Hit2.wav")]
+	
 	for word in root.words:
 		for c in word:
 			if not c in letters:
@@ -30,7 +32,7 @@ func _ready():
 	$HealthBar.max_value = maxHealth
 	pass
 
-func _physics_process(delta):
+func _physics_process(dt):
 	if enabled and not root.paused:
 		var target_pos = player.position - room.position
 		movement = target_pos - position
@@ -39,7 +41,7 @@ func _physics_process(delta):
 		
 		for node in $HitArea.get_overlapping_bodies():
 			if node == player:
-				node.takeDamage(contactDamage)
+				node.takeDamage(contactDamage*dt)
 	pass
 
 func takeDamage(x):

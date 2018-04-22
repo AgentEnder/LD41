@@ -3,14 +3,16 @@ extends Node2D
 var paused = false
 var Room = preload("res://Scenes/Room.tscn")
 var Map = []
-export var Width = 5
-export var Height = 5
+var Level = 1
+
+export(int) var Width = 5
+export(int) var Height = 5
 var LevelDimens = Vector2()
 var guis = {"GameOver" : preload("res://GUIs/GameOver.tscn"),
 			"Descent":preload("res://GUIs/Descent.tscn"),
 			"Craft" : preload("res://GUIs/Crafting.tscn")}
 
-var words = ["sword", "shield", "health", "health"]
+var words = ["sword", "shield", "health"]
 
 func _ready():
 	randomize()

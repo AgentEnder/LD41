@@ -20,7 +20,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Level" type="Node2D" groups=[
+[node name="Level" type="Node2D" index="0" groups=[
 "Root",
 ]]
 
@@ -92,6 +92,7 @@ _sections_unfolded = [ "Transform" ]
 "GUI",
 ]]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

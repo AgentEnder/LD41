@@ -16,3 +16,7 @@ func _on_Quit_pressed():
 func _on_Play_pressed():
 	get_tree().change_scene("res://Scenes/main.tscn")
 	pass # replace with function body
+
+
+func _on_Controls_pressed():
+	get_tree().change_scene("res://GUIs/Controls.tscn") # replace with function body

@@ -17,16 +17,18 @@ var currentCameraIdx = 0
 var health = 100
 var maxHealth = 100
 var score = -15
-var inventory = ""
+var inventory = "shieldhealth"
 var damage = BASEDMG
 var dead = false
+var defense = 0
 
 func _ready():
 	cameras = [get_parent().get_node("Camera"),get_parent().get_node("Camera2D")]
 	$HealthBar.max_value = maxHealth
 	damage = BASEDMG
 	root = get_parent()
-	
+	$Shield.visible = false
+	$Sword.visible = false
 	pass
 
 func _physics_process(delta):
@@ -47,20 +49,30 @@ func _physics_process(delta):
 		#Movement Input
 		if(Input.is_action_pressed("ui_up")):
 			motion.y = -1
+			$Sprite.animation = "bwalk"
 		elif(Input.is_action_pressed("ui_down")):
 			motion.y = 1
+			$Sprite.animation = "fwalk"
 		else:
 			motion.y = 0
 			
 		if(Input.is_action_pressed("ui_left")):
 			motion.x = -1
+			$Sprite.animation = "fwalk"
 		elif(Input.is_action_pressed("ui_right")):
 			motion.x = 1
+			$Sprite.animation = "fwalk"
 		else:
 			motion.x = 0
 		#Normalize Movement
 		if not motion.is_normalized():
 			motion = motion.normalized()
+		
+		if motion.length() < 1:
+			$Sprite.playing = false
+			$Sprite.frame = 0
+		else:
+			$Sprite.playing = true
 		
 		if Input.is_action_just_pressed("player_attack"):
 			for body in $HitArea.get_overlapping_bodies():
@@ -77,7 +89,7 @@ func addScore(x):
 	get_parent().get_node(SCOREPATH).text = string
 	
 func takeDamage(x): 
-	health -= x
+	health -= (100-defense)*x/100
 	if health <= 0:
 		die()
 	$HealthBar.value = health
@@ -125,7 +137,15 @@ func useLettersFromInventory(string):
 	if string == "health":
 		health = maxHealth
 		$HealthBar.value = health
+	elif string == "shield":
+		defense+=5
+		$Shield.visible = true
+	elif string == "sword":
+		damage+=10
+		$Sword.visible = true
 	for c in string:
-		var parts = inventory.split(c, false, 1)
-		inventory = parts.join("")
+		for i in range(inventory.length()):
+			if inventory[i] == c:
+				inventory = inventory.substr(0,i) + inventory.substr(i+1,inventory.length()-i-1)
+				break;
 	updateInventory()
