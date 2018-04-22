@@ -16,6 +16,8 @@ var scoreBonus = 30
 
 var letterTiles = preload("res://MiniScenes/LetterTile.tscn")
 
+var HitSamples = [preload("res://Sounds/Enemy/Hit1.wav"), preload("res://Sounds/Enemy/Hit2.wav")]
+
 func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	root = get_tree().get_nodes_in_group("Root")[0]
@@ -41,6 +43,8 @@ func _physics_process(delta):
 	pass
 
 func takeDamage(x):
+	$AudioStreamPlayer2D.stream = HitSamples[randi()%HitSamples.size()]
+	$AudioStreamPlayer2D.playing = true
 	health-=x
 	if health <= 0:
 		die()

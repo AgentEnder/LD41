@@ -4,6 +4,8 @@ const BASEDMG = 20
 const SCOREPATH = "CanvasLayer/Container/VSplitContainer/CenterContainer/Label"
 const INVENTORYPATH = "CanvasLayer/Container/VSplitContainer/Container/Label"
 
+var HitSamples = [preload("res://Sounds/Player/Hit1.wav"),preload("res://Sounds/Player/Hit2.wav")]
+
 var root
 
 var motion = Vector2()
@@ -79,7 +81,12 @@ func takeDamage(x):
 	if health <= 0:
 		die()
 	$HealthBar.value = health
-	
+	if $AudioStreamPlayer2D.stream:
+		if $AudioStreamPlayer2D.stream.get_length() > $AudioStreamPlayer2D.get_playback_position():
+			return
+	$AudioStreamPlayer2D.stream = HitSamples[randi()%HitSamples.size()]
+	$AudioStreamPlayer2D.playing = true
+
 func die():
 	root.display_gui("GameOver")
 	dead = true
