@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Anim/Player/bwalk0.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sounds/Player/Hit1.wav" type="AudioStream" id=8]
 [ext_resource path="res://Sprites/Sword.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Shield.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Helmet.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -83,7 +84,7 @@ tracks/0/keys = {
 "values": [ Vector2( 24.2874, -1.90244 ), Vector2( 30.2925, -5.19553 ), Vector2( 24.2874, -1.90244 ) ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "Player",
 ]]
 
@@ -99,8 +100,10 @@ _sections_unfolded = [ "Z Index" ]
 
 frames = SubResource( 1 )
 animation = "fwalk"
+frame = 2
 playing = true
 offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Coll" type="CollisionShape2D" parent="." index="1"]
 
@@ -164,13 +167,16 @@ area_mask = 1
 [node name="Sword" type="Sprite" parent="." index="5"]
 
 position = Vector2( -24.9717, -5.47 )
+z_index = 1
 texture = ExtResource( 9 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Shield" type="Sprite" parent="." index="6"]
 
 position = Vector2( 24.2874, -1.90244 )
+z_index = 1
 texture = ExtResource( 10 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Anim" type="AnimationPlayer" parent="Shield" index="0"]
 
@@ -182,5 +188,11 @@ playback_speed = 4.0
 anims/block = SubResource( 5 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
+
+[node name="Helmet" type="Sprite" parent="." index="7"]
+
+position = Vector2( -1.7834, -20.4982 )
+texture = ExtResource( 11 )
+_sections_unfolded = [ "Z Index" ]
 
 

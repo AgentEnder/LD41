@@ -125,7 +125,7 @@ area_mask = 1
 
 frames = SubResource( 4 )
 animation = "fwalk"
-frame = 5
+frame = 2
 playing = true
 
 

@@ -17,7 +17,7 @@ var currentCameraIdx = 0
 var health = 100
 var maxHealth = 100
 var score = -15
-var inventory = "shieldhealth"
+var inventory = ""
 var damage = BASEDMG
 var dead = false
 var defense = 0
@@ -31,6 +31,8 @@ func _ready():
 	root = get_parent()
 	$Shield.visible = false
 	$Sword.visible = false
+	$Helmet.visible = false
+	updateInventory()
 	pass
 
 func _physics_process(delta):
@@ -89,6 +91,12 @@ func _physics_process(delta):
 					body.takeDamage(damage)
 		
 		motion*=moveSpeed #Motion with length = speed
+		if $Sprite.animation == "bwalk":
+			$Shield.z_index = -1
+			$Sword.z_index = -1
+		else:
+			$Shield.z_index = 1
+			$Sword.z_index = 1
 		#Movement
 		move_and_slide(motion)
 
@@ -156,6 +164,9 @@ func useLettersFromInventory(string):
 	elif string == "shield":
 		defense+=5
 		$Shield.visible = true
+	elif string == "helmet":
+		defense+=10
+		$Helmet.visible = true
 	elif string == "sword":
 		damage+=10
 		$Sword.visible = true

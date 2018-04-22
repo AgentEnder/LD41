@@ -22,6 +22,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	root = get_tree().get_nodes_in_group("Root")[0]
 	room = get_parent()
+	contactDamage *= root.Level
 	HitSamples =[load("res://Sounds/Enemy/Hit1.wav"), load("res://Sounds/Enemy/Hit2.wav")]
 	
 	for word in root.words:

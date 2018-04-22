@@ -5,7 +5,7 @@
 [ext_resource path="res://MiniScenes/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/ground_stone_pavement.png" type="Texture" id=4]
 
-[node name="Room" type="Node2D" index="0"]
+[node name="Room" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -50,11 +50,12 @@ _sections_unfolded = [ "Transform" ]
 [node name="ground_stone_pavement" type="Sprite" parent="." index="4"]
 
 scale = Vector2( 0.0625, 0.0625 )
+z_index = -2
 texture = ExtResource( 4 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 16384, 9600 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
 
 [connection signal="body_exited" from="Door" to="Door" method="_on_Door_body_exited"]
 

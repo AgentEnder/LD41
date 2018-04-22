@@ -3,7 +3,7 @@ extends Node2D
 var paused = false
 var Room = preload("res://Scenes/Room.tscn")
 var Map = []
-var Level = 1
+var Level = 0
 
 export(int) var Width = 5
 export(int) var Height = 5
@@ -12,7 +12,7 @@ var guis = {"GameOver" : preload("res://GUIs/GameOver.tscn"),
 			"Descent":preload("res://GUIs/Descent.tscn"),
 			"Craft" : preload("res://GUIs/Crafting.tscn")}
 
-var words = ["sword", "shield", "health"]
+var words = ["sword", "helmet", "shield", "health"]
 
 func _ready():
 	randomize()
@@ -38,6 +38,7 @@ func ClearLevel():
 
 func BuildLevel():
 	ClearLevel()
+	Level+=1
 	for x in range(LevelDimens.x):
 		Map.append([])
 		for y in range(LevelDimens.y):
