@@ -1,3 +1,7 @@
 
 *.pdn
-Exports
+
+
+*.html
+
+Exports/*
