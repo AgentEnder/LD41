@@ -26,7 +26,12 @@ func _ready():
 			pickups.append(load(file))
 	dir.list_dir_end()
 	pass
-	
+
+func _process(delta):
+	for body in $Door.get_overlapping_bodies():
+		if body.is_in_group("Player"):
+			get_tree().get_nodes_in_group("Camera")[0].position = get_node("Center").global_position
+
 func init(arg_mapPos, arg_doors):
 	doors = arg_doors
 	mapPos = arg_mapPos
