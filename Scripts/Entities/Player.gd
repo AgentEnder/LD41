@@ -53,7 +53,7 @@ func _physics_process(delta):
 		elif(Input.is_action_just_pressed("ui_cancel")):
 			for child in get_parent().get_children():
 				child.queue_free()
-			get_tree().reload_current_scene()
+			get_tree().change_scene("res://GUIs/MainMenu.tscn")
 		elif(Input.is_action_just_pressed("ui_craft")):
 			root.paused = true
 			root.display_gui("Craft")

@@ -20,3 +20,7 @@ func _on_Play_pressed():
 
 func _on_Controls_pressed():
 	get_tree().change_scene("res://GUIs/Controls.tscn") # replace with function body
+
+
+func _on_About_pressed():
+	get_tree().change_scene("res://GUIs/About.tscn") # replace with function body
